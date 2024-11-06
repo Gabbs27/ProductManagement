@@ -50,7 +50,7 @@ namespace ProductManagementSystem.Controllers
             return View(customerItem);
         }
 
-        // GET: CustomerItems/Delete/5
+        // GET: CustaomerItems/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();

@@ -4,23 +4,65 @@
     ViewData["Title"] = "Edit Item";
 }
 
-<h2>Edit Item</h2>
+<h2 class="mb-4">Edit Item</h2>
 
-<form asp-action="Edit" method="post">
+<form asp-action="Edit" method="post" class="needs-validation" novalidate>
     <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label asp-for="Name" class="control-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+
+    <div class="row mb-3">
+        <label asp-for="ItemNumber" class="col-sm-2 col-form-label fw-bold">Item Number</label>
+        <div class="col-sm-10">
+            <input asp-for="ItemNumber" class="form-control" placeholder="Enter item number" required />
+            <span asp-validation-for="ItemNumber" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
-        <input asp-for="Description" class="form-control" />
-        <span asp-validation-for="Description" class="text-danger"></span>
+
+    <div class="row mb-3">
+        <label asp-for="Name" class="col-sm-2 col-form-label fw-bold">Name</label>
+        <div class="col-sm-10">
+            <input asp-for="Name" class="form-control" placeholder="Enter item name" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+    <div class="row mb-3">
+        <label asp-for="Description" class="col-sm-2 col-form-label fw-bold">Description</label>
+        <div class="col-sm-10">
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter item description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label asp-for="DefaultPrice" class="col-sm-2 col-form-label fw-bold">Default Price</label>
+        <div class="col-sm-10">
+            <input asp-for="DefaultPrice" class="form-control" placeholder="Enter default price" required />
+            <span asp-validation-for="DefaultPrice" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label asp-for="ItemCategory" class="col-sm-2 col-form-label fw-bold">Category</label>
+        <div class="col-sm-10">
+            <input asp-for="ItemCategory" class="form-control" placeholder="Enter item category" required />
+            <span asp-validation-for="ItemCategory" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label asp-for="Status" class="col-sm-2 col-form-label fw-bold">Status</label>
+        <div class="col-sm-10">
+            <select asp-for="Status" class="form-select" required>
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
     </div>
 </form>
 

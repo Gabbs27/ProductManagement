@@ -38,7 +38,7 @@ namespace ProductManagementSystem.Controllers
                 {
                     Customer = c,
                     TopItems = c.CustomerItems
-                        .OrderByDescending(ci => ci.Item.Price) // Ordenar por precio
+                        .OrderByDescending(ci => ci.Item.DefaultPrice) // Ordenar por precio
                         .Take(topCount) // Tomar los X más caros
                 })
                 .ToListAsync();
