@@ -1,0 +1,37 @@
+﻿@model ProductManagementSystem.Models.CustomerItem
+
+@{
+    ViewData["Title"] = "Edit Customer Item";
+}
+
+<h2>Edit Customer Item</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group mb-3">
+        <label for="CustomerId" class="form-label">Customer</label>
+        <select asp-for="CustomerId" class="form-control" asp-items="@(new SelectList(ViewData["Customers"] as List<ProductManagementSystem.Models.Customer>, "Id", "Name", Model.CustomerId))">
+            <option value="">Select a customer</option>
+        </select>
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="ItemId" class="form-label">Item</label>
+        <select asp-for="ItemId" class="form-control" asp-items="@(new SelectList(ViewData["Items"] as List<ProductManagementSystem.Models.Item>, "Id", "Name", Model.ItemId))">
+            <option value="">Select an item</option>
+        </select>
+        <span asp-validation-for="ItemId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+body {
+}
+

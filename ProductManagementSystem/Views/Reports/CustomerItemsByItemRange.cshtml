@@ -1,0 +1,51 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Customer Items by Item Range";
+    bool isReportEmpty = Model == null || !Model.Any();
+}
+
+<h2>Customer Items by Item Range</h2>
+
+<form asp-action="CustomerItemsByItemRange" method="post">
+    <div class="form-group">
+        <label for="itemNumberFrom">Item Number</label>
+        <input type="number" id="itemNumberFrom" name="itemNumberFrom" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="itemNumberTo">to Item Number</label>
+        <input type="number" id="itemNumberTo" name="itemNumberTo" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Generate</button>
+</form>
+
+@if (!isReportEmpty)
+{
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Item Number</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CustomerName</td>
+                    <td>@item.ItemNumber</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>@item.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (Model != null)
+{
+    <p>No data available for the specified item number range.</p>
+}

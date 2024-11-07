@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using ProductManagementSystem.Data;
 using ProductManagementSystem.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ProductManagementSystem.Controllers
 {
@@ -20,24 +20,46 @@ namespace ProductManagementSystem.Controllers
         // GET: CustomerItems
         public async Task<IActionResult> Index()
         {
-            var customerItems = _context.CustomerItems
+            var customerItems = await _context.CustomerItems
                 .Include(ci => ci.Customer)
-                .Include(ci => ci.Item);
-            return View(await customerItems.ToListAsync());
+                .Include(ci => ci.Item)
+                .ToListAsync();
+            return View(customerItems);
+        }
+
+        // GET: CustomerItems/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var customerItem = await _context.CustomerItems
+                .Include(ci => ci.Customer)
+                .Include(ci => ci.Item)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (customerItem == null)
+            {
+                return NotFound();
+            }
+
+            return View(customerItem);
         }
 
         // GET: CustomerItems/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name");
-            ViewData["ItemId"] = new SelectList(_context.Items, "Id", "Name");
+            ViewData["Customers"] = new SelectList(_context.Customers, "Id", "Name");
+            ViewData["Items"] = new SelectList(_context.Items, "Id", "Name");
             return View();
         }
 
         // POST: CustomerItems/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CustomerItem customerItem)
+        public async Task<IActionResult> Create([Bind("CustomerId,ItemId")] CustomerItem customerItem)
         {
             if (ModelState.IsValid)
             {
@@ -45,21 +67,85 @@ namespace ProductManagementSystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", customerItem.CustomerId);
-            ViewData["ItemId"] = new SelectList(_context.Items, "Id", "Name", customerItem.ItemId);
+
+            ViewData["Customers"] = new SelectList(_context.Customers, "Id", "Name", customerItem.CustomerId);
+            ViewData["Items"] = new SelectList(_context.Items, "Id", "Name", customerItem.ItemId);
             return View(customerItem);
         }
 
-        // GET: CustaomerItems/Delete/5
+
+        // GET: CustomerItems/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var customerItem = await _context.CustomerItems.FindAsync(id);
+            if (customerItem == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["Customers"] = _context.Customers.ToList();
+            ViewData["Items"] = _context.Items.ToList();
+            return View(customerItem);
+        }
+
+        // POST: CustomerItems/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, CustomerItem customerItem)
+        {
+            if (id != customerItem.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(customerItem);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CustomerItemExists(customerItem.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewData["Customers"] = _context.Customers.ToList();
+            ViewData["Items"] = _context.Items.ToList();
+            return View(customerItem);
+        }
+
+        // GET: CustomerItems/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var customerItem = await _context.CustomerItems
                 .Include(ci => ci.Customer)
                 .Include(ci => ci.Item)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (customerItem == null) return NotFound();
+
+            if (customerItem == null)
+            {
+                return NotFound();
+            }
 
             return View(customerItem);
         }
@@ -70,9 +156,17 @@ namespace ProductManagementSystem.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var customerItem = await _context.CustomerItems.FindAsync(id);
-            _context.CustomerItems.Remove(customerItem);
-            await _context.SaveChangesAsync();
+            if (customerItem != null)
+            {
+                _context.CustomerItems.Remove(customerItem);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Index));
+        }
+
+        private bool CustomerItemExists(int id)
+        {
+            return _context.CustomerItems.Any(e => e.Id == id);
         }
     }
 }

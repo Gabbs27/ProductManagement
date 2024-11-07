@@ -1,3 +1,66 @@
 ﻿<Properties StartupConfiguration="{5C328579-3FFA-4230-9E66-AE3A7B0FF9B5}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.ProductManagementSystem PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <DisabledProjects>
+    <String>ProductManagementSystem.Tests/ProductManagementSystem.Tests.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/CustomerItemsController.cs">
+    <Files>
+      <File FileName="Controllers/HomeController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/CustomersController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/ItemController.cs" Line="123" Column="1" />
+      <File FileName="Views/Home/Index.cshtml" Line="10" Column="1" />
+      <File FileName="Views/Home/Privacy.cshtml" Line="1" Column="1" />
+      <File FileName="Views/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="Views/_ViewImports.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Shared/_Layout.cshtml" Line="24" Column="30" />
+      <File FileName="Models/CustomerItem.cs" Line="22" Column="2" />
+      <File FileName="Data/AppDbContext.cs" Line="17" Column="1" />
+      <File FileName="Controllers/CustomerItemsController.cs" Line="72" Column="14" />
+      <File FileName="Views/CustomerItems/Create.cshtml" Line="36" Column="1" />
+      <File FileName="Controllers/ReportsController.cs" Line="29" Column="1" />
+      <File FileName="Views/Reports/CustomersWithItemCount.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Reports/TopExpensiveItemsByCustomer.cshtml" Line="21" Column="35" />
+      <File FileName="Views/Customers/Create.cshtml" Line="17" Column="1" />
+      <File FileName="Views/Customers/Index.cshtml" Line="9" Column="4" />
+      <File FileName="Views/Customers/Details.cshtml" Line="22" Column="1" />
+      <File FileName="Views/Customers/Edit.cshtml" Line="56" Column="1" />
+      <File FileName="Views/Customers/Delete.cshtml" Line="27" Column="1" />
+      <File FileName="Models/Customer.cs" Line="4" Column="1" />
+      <File FileName="Models/Item.cs" Line="37" Column="2" />
+      <File FileName="Views/Items/Delete.cshtml" Line="29" Column="1" />
+      <File FileName="Views/Items/Index.cshtml" Line="44" Column="1" />
+      <File FileName="Views/Items/Create.cshtml" Line="70" Column="1" />
+      <File FileName="Views/Items/Edit.cshtml" Line="72" Column="1" />
+      <File FileName="Views/Items/Details.cshtml" Line="24" Column="1" />
+      <File FileName="Views/CustomerItems/Index.cshtml" Line="1" Column="1" />
+      <File FileName="Views/CustomerItems/Edit.cshtml" Line="38" Column="1" />
+      <File FileName="Views/CustomerItems/Details.cshtml" Line="21" Column="1" />
+      <File FileName="Views/CustomerItems/Delete.cshtml" Line="27" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ProductManagementSystem" expanded="True">
+            <Node name="ProductManagementSystem" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="CustomerItemsController.cs" selected="True" />
+              </Node>
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+            </Node>
+            <Node name="ProductManagementSystem.Tests" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="ProductManagementSystem" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
 </Properties>

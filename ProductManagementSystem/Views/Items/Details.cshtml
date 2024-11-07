@@ -1,0 +1,23 @@
+﻿@model ProductManagementSystem.Models.Item
+
+@{
+    ViewData["Title"] = "Item Details";
+}
+
+<h2 class="mb-4">Item Details</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h5 class="card-title fw-bold">@Model.Name</h5>
+        <p class="card-text">
+            <strong>Item Number:</strong> @Model.ItemNumber <br />
+            <strong>Description:</strong> @Model.Description <br />
+            <strong>Default Price:</strong> $@Model.DefaultPrice <br />
+            <strong>Category:</strong> @Model.ItemCategory <br />
+            <strong>Status:</strong> @(Model.Status ? "Active" : "Inactive")
+        </p>
+
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+    </div>
+</div>

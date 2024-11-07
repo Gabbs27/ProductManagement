@@ -1,23 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using ProductManagementSystem.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProductManagementSystem.Models
 {
     public class CustomerItem
     {
         [Key]
-        public int Id { get; set; }  // Clave primaria para el modelo
+        public int Id { get; set; }
 
-        // Clave foránea para el cliente
-        [Required]
-        [ForeignKey("Customer")]
+        [Required(ErrorMessage = "Please select a customer.")]
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }  // Propiedad de navegación para el cliente
+        public Customer? Customer { get; set; }
 
-        // Clave foránea para el ítem
-        [Required]
-        [ForeignKey("Item")]
+        [Required(ErrorMessage = "Please select an item.")]
         public int ItemId { get; set; }
-        public Item Item { get; set; }  // Propiedad de navegación para el ítem
+        public Item? Item { get; set; }
     }
+
+
+ 
 }

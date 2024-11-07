@@ -21,6 +21,19 @@ namespace ProductManagementSystem.Controllers
             return View(await _context.Items.ToListAsync());
         }
 
+        // GET: Items/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var item = await _context.Items.FirstOrDefaultAsync(m => m.Id == id);
+            if (item == null)
+                return NotFound();
+
+            return View(item);
+        }
+
         // GET: Items/Create
         public IActionResult Create()
         {

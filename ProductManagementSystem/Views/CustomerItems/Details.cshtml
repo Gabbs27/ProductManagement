@@ -1,0 +1,20 @@
+﻿@model ProductManagementSystem.Models.CustomerItem
+
+@{
+    ViewData["Title"] = "Customer Item Details";
+}
+
+<h2>Customer Item Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Customer: @Model.Customer.Name</h5>
+        <p class="card-text">
+            <strong>Item:</strong> @Model.Item.Name <br />
+            <strong>Description:</strong> @Model.Item.Description <br />
+            <strong>Price:</strong> $@Model.Item.DefaultPrice
+        </p>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
